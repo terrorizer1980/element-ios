@@ -1580,6 +1580,11 @@ static NSString *const kHTMLATagRegexPattern = @"<a href=\"(.*?)\">([^<]*)</a>";
             displayText = [MXEventContentPollStart modelFromJSON:event.content].question;
             break;
         }
+        case MXEventTypeLocationBeaconInfo:
+        {
+            displayText = @"Location Beacon Info";
+            break;
+        }
         default:
             *error = MXKEventFormatterErrorUnknownEventType;
             break;

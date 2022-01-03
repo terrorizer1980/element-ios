@@ -159,6 +159,14 @@ NSString *const URLPreviewDidUpdateNotification = @"URLPreviewDidUpdateNotificat
                 
                 break;
             }
+            case MXEventTypeLocationBeaconInfo:
+            {
+                self.tag = RoomBubbleCellDataTagLocationBeaconInfo;
+                self.collapsable = NO;
+                self.collapsed = NO;
+
+                break;
+            }
             case MXEventTypeCustom:
             {
                 if ([event.type isEqualToString:kWidgetMatrixEventTypeString]
@@ -862,6 +870,9 @@ NSString *const URLPreviewDidUpdateNotification = @"URLPreviewDidUpdateNotificat
         case RoomBubbleCellDataTagLocation:
             shouldAddEvent = NO;
             break;
+        case RoomBubbleCellDataTagLocationBeaconInfo:
+            shouldAddEvent = NO;
+            break;
         default:
             break;
     }
@@ -917,6 +928,12 @@ NSString *const URLPreviewDidUpdateNotification = @"URLPreviewDidUpdateNotificat
                 shouldAddEvent = NO;
                 break;
             case MXEventTypePollStart:
+                shouldAddEvent = NO;
+                break;
+            case MXEventTypeLocationBeaconInfo:
+                shouldAddEvent = NO;
+                break;
+            case MXEventTypeLocationBeacon:
                 shouldAddEvent = NO;
                 break;
             case MXEventTypeCustom:

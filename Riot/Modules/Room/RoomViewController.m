@@ -427,6 +427,10 @@ const NSTimeInterval kResizeComposerAnimationDuration = .05;
     [self.bubblesTableView registerClass:LocationWithoutSenderInfoBubbleCell.class forCellReuseIdentifier:LocationWithoutSenderInfoBubbleCell.defaultReuseIdentifier];
     [self.bubblesTableView registerClass:LocationWithPaginationTitleBubbleCell.class forCellReuseIdentifier:LocationWithPaginationTitleBubbleCell.defaultReuseIdentifier];
     
+    [self.bubblesTableView registerClass:LocationBeaconInfoBubbleCell.class forCellReuseIdentifier:LocationBeaconInfoBubbleCell.defaultReuseIdentifier];
+    [self.bubblesTableView registerClass:LocationBeaconInfoWithoutSenderInfoBubbleCell.class forCellReuseIdentifier:LocationBeaconInfoWithoutSenderInfoBubbleCell.defaultReuseIdentifier];
+    [self.bubblesTableView registerClass:LocationBeaconInfoWithPaginationTitleBubbleCell.class forCellReuseIdentifier:LocationBeaconInfoWithPaginationTitleBubbleCell.defaultReuseIdentifier];
+    
     [self vc_removeBackTitle];
     
     // Display leftBarButtonItems or leftBarButtonItem to the right of the Back button
@@ -2758,6 +2762,21 @@ const NSTimeInterval kResizeComposerAnimationDuration = .05;
         else
         {
             cellViewClass = LocationBubbleCell.class;
+        }
+    }
+    else if (bubbleData.tag == RoomBubbleCellDataTagLocationBeaconInfo)
+    {
+        if (bubbleData.isPaginationFirstBubble)
+        {
+            cellViewClass = LocationBeaconInfoWithPaginationTitleBubbleCell.class;
+        }
+        else if (bubbleData.shouldHideSenderInformation)
+        {
+            cellViewClass = LocationBeaconInfoWithoutSenderInfoBubbleCell.class;
+        }
+        else
+        {
+            cellViewClass = LocationBeaconInfoBubbleCell.class;
         }
     }
     else if (bubbleData.isIncoming)
